@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+
+{% block cuerpo %}
+  <div class="row"><!--LA FILA-->
+   <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!--columna izquierda-->
+
+     <h1>Editar</h1>
+     <div class="card"><!--la tarjeta-->
+      <div class="card-body">
+        <form action="/editarVentas/" method="POST">{% csrf_token %}<!--falta action-->
+          <div class="form-group py-2">
+            <input type="text" id="txtid" name="txtid" class="form-control"
+            value="{{misventas.id_venta}}" minlength="1"  maxlength="6" required readonly>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtid_prod" name="txtid_prod" class="form-control"
+            value="{{misventas.id_prod}}" minlength="1"  maxlength="100" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtid_emp" name="txtid_emp" class="form-control"
+            value="{{misventas.id_emp}}" minlength="1" maxlength="100"  equired>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtid_clien" name="txtid_clien" class="form-control"
+            value="{{misventas.id_clien}}" minlength="1" maxlength="100"  equired>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Venta</button>
+          </div>
+
+        </form>
+      </div>
+    </div><!--la tarjeta-->
+
+   </div><!--columna izquierda-->
+   {% endblock %}

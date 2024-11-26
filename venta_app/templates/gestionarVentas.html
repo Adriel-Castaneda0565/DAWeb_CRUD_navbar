@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block cuerpo %}
+  <div class="row"><!--LA FILA-->
+   <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!--columna izquierda-->
+
+     <h1>Agregar</h1>
+     <div class="card"><!--la tarjeta-->
+      <div class="card-body">
+        <form action="registrarVentas/" method="POST">{% csrf_token %}<!--falta action-->
+          <div class="form-group py-2">
+            <input type="text" id="txtid" name="txtid" class="form-control"
+            placeholder="ID Venta" minlength="1"  maxlength="6" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtid_prod" name="txtid_prod" class="form-control"
+            placeholder="ID Productos" minlength="1"  maxlength="100" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtid_emp" name="txtid_emp" class="form-control"
+            placeholder="ID Empleado" minlength="1" maxlength="100"  equired>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtid_clien" name="txtid_clien" class="form-control"
+            placeholder="ID Cliente" minlength="1" maxlength="100"  equired>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Venta</button>
+          </div>
+
+        </form>
+      </div>
+    </div><!--la tarjeta-->
+
+   </div><!--columna izquierda-->
+
+ 
+
+  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!--columna derecha-->
+    <h1>Listado de Ventas</h1>
+    <img class="w-50" src="{% static 'img/ventas.png '%}" alt="adri" width="400" height="300">
+    <br>
+    <br>
+    <!--la tabla-->
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID_venta</th>
+            <th scope="col">ID_producto</th>
+            <th scope="col">ID_empleado</th>
+            <th scope="col">ID_cliente</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in misventas %}
+          <tr>
+            <td> {{forloop.counter}} </td>
+            <td> {{m.id_venta}} </td>
+            <td> {{m.id_prod}} </td>
+            <td> {{m.id_emp}} </td>
+            <td> {{m.id_clien}} </td>
+            <td><a href="seleccionarVentas/{{m.id_venta}}" class="btn btn-info">Editar</a></td><!--Falta-->
+            <td><a href="borrarVentas/{{m.id_venta}}" class="btn btn-danger">Borrar</a></td><!--Falta-->
+          </tr>
+          
+
+          {% endfor %}
+        </tbody>
+      </table>
+    <!--la tabla-->
+  </div><!--columna derecha-->
+</div><!--LA FILA-->
+{% endblock %}
