@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+
+
+{% block cuerpo %}
+  <div class="row"><!--LA FILA-->
+   <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!--columna izquierda-->
+
+     <h1>Agregar</h1>
+     <div class="card"><!--la tarjeta-->
+      <div class="card-body">
+        <form action="/editarProveedores/" method="POST">{% csrf_token %}<!--falta action-->
+          <div class="form-group py-2">
+            <input type="text" id="txtid" name="txtid" class="form-control"
+            placeholder="ID_Proveedor" value="{{misproveedores.id_prov}}" minlength="1"  maxlength="6" required readonly>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+            placeholder="Nombre Proveedor" value="{{misproveedores.nombre}}" minlength="1"  maxlength="100" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtubi" name="txtubi" class="form-control"
+            placeholder="Ubicacion" value="{{misproveedores.ubicacion}}" minlength="1" maxlength="100"  equired>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txttel" name="txttel" class="form-control"
+            placeholder="Telefono" value="{{misproveedores.telefono}}" minlength="1" maxlength="100"  equired>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txthora" name="txthora" class="form-control"
+            placeholder="Horario" value="{{misproveedores.hora}}" minlength="1" maxlength="100"  equired>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtemail" name="txtemail" class="form-control"
+            placeholder="Email" minlength="1" value="{{misproveedores.email}}" maxlength="100"  equired>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Proveedor</button>
+          </div>
+
+        </form>
+      </div>
+    </div><!--la tarjeta-->
+
+   </div><!--columna izquierda-->
+   {% endblock %}
