@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+  <div class="row"><!--LA FILA-->
+   <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!--columna izquierda-->
+
+     <h1>Agregar</h1>
+     <div class="card"><!--la tarjeta-->
+      <div class="card-body">
+        <form action="registrarPedidos/{{m.id_ped}}" method="POST">{% csrf_token %}
+          <div class="form-group py-2">
+            <input type="text" id="txtid_ped" name="txtid_ped" class="form-control"
+            placeholder="ID Pedido" minlength="1"  maxlength="6" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtid_clien" name="txtid_clien" class="form-control"
+            placeholder="ID Cliente" minlength="1"  maxlength="100" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtid_emp" name="txtid_emp" class="form-control"
+            placeholder="ID Empleado" minlength="1" maxlength="100" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtid_prod" name="txtid_prod" class="form-control"
+            placeholder="ID Producto" minlength="1" maxlength="100" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtestado" name="txtestado" class="form-control"
+            placeholder="Estado" minlength="1" maxlength="100" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txttotal" name="txttotal" class="form-control"
+            placeholder="Total" minlength="1" maxlength="100" required>
+          </div>
+          <div class="form-group py-2">
+            <input type="text" id="txtmetodo_p" name="txtmetodo_p" class="form-control"
+            placeholder="Metodo de Pago" minlength="1" maxlength="100" required>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="btn btn-primary">Guardar Pedido</button>
+          </div>
+
+        </form>
+      </div>
+    </div><!--la tarjeta-->
+
+   </div><!--columna izquierda-->
+
+
+  <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!--columna derecha-->
+    <h1>Listado de Pedidos</h1>
+    <img class="w-50" src="{% static 'img/pedidos.png '%}" alt="adri" width="400" height="300">
+    <br>
+    <br>
+    <!--la tabla-->
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID Pedido</th>
+            <th scope="col">ID Cliente</th>
+            <th scope="col">ID Empleado</th>
+            <th scope="col">ID Producto</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Total</th>
+            <th scope="col">Metodo de Pago</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in mispedidos %}
+          <tr>
+            <td> {{forloop.counter}} </td>
+            <td> {{m.id_ped}} </td>
+            <td> {{m.id_clien}} </td>
+            <td> {{m.id_emp}} </td>
+            <td> {{m.id_prod}} </td>
+            <td> {{m.estado}} </td>
+            <td> {{m.total}} </td>
+            <td> {{m.metodo_pago}} </td>
+            <td><a href="seleccionarPedidos/{{m.id_ped}}" class="btn btn-info">Editar</a></td><!--Falta-->
+            <td><a href="borrarPedidos/{{m.id_ped}}" class="btn btn-danger">Borrar</a></td><!--Falta-->
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+    <!--la tabla-->
+  </div><!--columna derecha-->
+</div><!--LA FILA-->
+{% endblock %}
